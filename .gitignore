@@ -13,3 +13,11 @@ server/
 docs/
 *.base
 ai_studio_code.txt
+dist/
+dist-ssr
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
