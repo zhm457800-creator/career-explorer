@@ -1,20 +1,31 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Career Explorer
 
-# Run and deploy your AI Studio app
+我的个人职业探索网站
 
-This contains everything you need to run your app locally.
+## 简介
 
-View your app in AI Studio: https://ai.studio/apps/38a79f78-35fe-40f4-b3dd-8122de06d4f6
+这是一个展示我的职业经历、技能和个人兴趣的个人网站。
 
-## Run Locally
+## 技术栈
 
-**Prerequisites:**  Node.js
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
 
+## 本地运行
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm install
+npm run dev
+```
+
+## 构建
+
+```bash
+npm run build
+```
+
+## 部署
+
+网站托管在 GitHub Pages
