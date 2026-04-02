@@ -1,0 +1,180 @@
+.horizontal-card {
+  min-height: 240px;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  will-change: transform, box-shadow;
+}
+
+.horizontal-card:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.horizontal-card .w-\[280px\] {
+  width: 280px;
+  min-width: 280px;
+  height: 100%;
+  aspect-ratio: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .horizontal-card {
+    flex-direction: column !important;
+  }
+  
+  .horizontal-card .w-\[280px\] {
+    width: 100%;
+    min-width: unset;
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+}
+
+.horizontal-card .line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.horizontal-card .line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.horizontal-card .animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.horizontal-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(216, 167, 177, 0.03) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.horizontal-card:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .horizontal-card,
+  .horizontal-card * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .horizontal-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .horizontal-card:hover {
+    box-shadow: 0 8px 30px rgba(216, 167, 177, 0.2);
+  }
+  
+  .horizontal-card .bg-surface {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+@media (max-width: 640px) {
+  .horizontal-card {
+    min-height: auto;
+  }
+  
+  .horizontal-card .p-8 {
+    padding: 1.5rem;
+  }
+  
+  .horizontal-card .font-headline {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .horizontal-card {
+    min-height: 260px;
+  }
+}
+
+.horizontal-card .bg-gradient-to-br {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.horizontal-card .group:hover .group-hover\:grayscale-0 {
+  filter: grayscale(0%) !important;
+}
+
+.horizontal-card img {
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.horizontal-card:hover img {
+  transform: scale(1.1);
+}
+
+.horizontal-card .absolute.top-0 {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.horizontal-card .opacity-0 {
+  transition: opacity 0.5s ease;
+}
+
+.horizontal-card .opacity-0.group-hover\:opacity-100 {
+  opacity: 0;
+}
+
+.horizontal-card:hover .opacity-0.group-hover\:opacity-100 {
+  opacity: 1;
+}
