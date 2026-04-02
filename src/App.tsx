@@ -9,7 +9,7 @@ import { Extension } from './pages/Extension';
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/career-explorer">
       <ScrollToTop />
       <Layout>
         <Routes>
