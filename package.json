@@ -8,6 +8,7 @@
     "dev:server": "tsx watch server/wechat-proxy.ts",
     "dev:all": "npm run dev:server & npm run dev",
     "build": "vite build",
+    "deploy:local": "npm run build && del /Q assets\\index-*.js assets\\index-*.css && xcopy /E /I /Y dist\\* . && rmdir /S /Q dist",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
