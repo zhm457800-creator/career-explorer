@@ -37,6 +37,12 @@
   --carousel-vignette: rgba(28, 26, 24, 0.65);
 }
 
+/* Extension Drawer 始终保持深色背景 */
+.light-theme .drawer-dark-bg {
+  --bg-color: #1A1A1B !important;
+  --text-color: #F4F1ED !important;
+}
+
 @layer base {
   body {
     @apply font-body selection:bg-primary/30 overflow-x-hidden;

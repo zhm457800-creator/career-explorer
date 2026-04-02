@@ -188,7 +188,7 @@ export const ResearchDrawer = ({ onClose }: ResearchDrawerProps) => {
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-      className="fixed inset-0 z-[150] bg-background flex items-center justify-center p-8"
+      className="fixed inset-0 z-[150] bg-background flex items-center justify-center p-8 drawer-dark-bg"
     >
       {/* Scanline Overlay */}
       <div className="fixed inset-0 pointer-events-none z-[100] opacity-20 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px]"></div>

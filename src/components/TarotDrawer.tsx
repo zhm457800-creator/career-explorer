@@ -90,7 +90,7 @@ export const TarotDrawer = ({ onClose }: TarotDrawerProps) => {
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-      className="fixed inset-0 z-[150] bg-background overflow-y-auto hide-scrollbar flex flex-col text-on-surface"
+      className="fixed inset-0 z-[150] bg-background overflow-y-auto hide-scrollbar flex flex-col text-on-surface drawer-dark-bg"
       onMouseMove={handleMouseMove}
     >
       {/* Background Noise & Glow */}

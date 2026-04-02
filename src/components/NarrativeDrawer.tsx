@@ -73,7 +73,7 @@ export const NarrativeDrawer = ({ onClose }: NarrativeDrawerProps) => {
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-      className="fixed inset-0 z-[100] bg-background overflow-y-auto hide-scrollbar flex flex-col text-on-surface"
+      className="fixed inset-0 z-[100] bg-background overflow-y-auto hide-scrollbar flex flex-col text-on-surface drawer-dark-bg"
     >
       {/* Sticky Header */}
       <header className="fixed top-0 w-full z-[110] flex justify-between items-center px-12 py-10 bg-background/80 backdrop-blur-md">
