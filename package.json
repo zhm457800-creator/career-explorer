@@ -8,7 +8,7 @@
     "dev:server": "tsx watch server/wechat-proxy.ts",
     "dev:all": "npm run dev:server & npm run dev",
     "build": "vite build",
-    "deploy:local": "npm run build && del /Q assets\\index-*.js assets\\index-*.css && xcopy /E /I /Y dist\\* . && rmdir /S /Q dist",
+    "deploy:local": "npm run build && del /Q assets\\index-*.js assets\\index-*.css && xcopy /E /I /Y dist\\assets .\\assets && echo 'Note: root index.html remains untouched for local dev. Ensure pages redirect properly setup if needed.'",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
