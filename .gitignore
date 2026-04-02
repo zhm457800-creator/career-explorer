@@ -6,3 +6,11 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# 本地配置（不推送到 GitHub）
+.claude/
+.obsidian/
+server/
+docs/
+*.base
+ai_studio_code.txt
