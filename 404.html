@@ -4,16 +4,11 @@
   <meta charset="utf-8">
   <title>Career Explorer</title>
   <script>
-    var path = window.location.pathname;
-    if (!path || path === '/') {
-      path = '/career-explorer/';
-    } else {
-      path = '/career-explorer/' + path.replace(/^\//, '');
-    }
-    window.location.href = path;
+    // 强制重定向到首页
+    window.location.replace('/career-explorer/');
   </script>
 </head>
 <body>
-  <p>Redirecting to home...</p>
+  <p>Redirecting...</p>
 </body>
 </html>
