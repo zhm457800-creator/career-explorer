@@ -4,16 +4,8 @@
   <meta charset="utf-8">
   <title>Career Explorer</title>
   <script>
-    // 获取当前路径并重定向到正确的子目录
-    var path = window.location.pathname;
-    if (path.startsWith('/career-explorer')) {
-      // 已经在正确路径
-    } else if (path === '/' || path === '') {
-      path = '/career-explorer/';
-    } else {
-      path = '/career-explorer' + path;
-    }
-    window.location.replace(path);
+    // SPA fallback - redirect to index.html
+    window.location.replace('/career-explorer/');
   </script>
 </head>
 <body>
