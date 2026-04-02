@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { gsap } from 'gsap';
 import { IMAGE_ASSETS } from '../lib/assets';
@@ -254,9 +255,9 @@ export const Home = () => {
         </motion.h2>
         <div className="mt-12 flex flex-col items-center">
           <p className="text-xs uppercase text-on-surface/60 mb-8">Ready to transition from the void to the light?</p>
-          <button className="bg-primary text-on-primary font-headline font-bold tracking-tighter uppercase hover:bg-on-surface hover:text-background transition-colors px-10 py-3">
+          <Link to="/extension" className="bg-primary text-on-primary font-headline font-bold tracking-tighter uppercase hover:bg-on-surface hover:text-background transition-colors px-10 py-3 block w-fit">
             My Portfolio
-          </button>
+          </Link>
         </div>
       </section>
     </div>
