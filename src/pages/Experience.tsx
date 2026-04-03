@@ -15,6 +15,7 @@ const stages = [
     period: '2019.09-2023.06',
     image: IMAGE_ASSETS.experience.stage1,
     description: '本科就读于南京工程学院，GPA：3.99/5.00； 获奖情况：获二等奖学金（2020）、三等奖学金（2019、2021）、国家励志奖学金（2022）；担任“青年志愿者协会”及“心理部“”培训干事，获“优秀学生干部”（2020、2021）政务志愿活动“优秀志愿者”（2022）；担任负责人在南京工程学院创新创业训练计划项目中获“优秀奖”（2021），参与江苏省大学生创新创业训练计划项目在国家级期刊发表两篇论文（2022）；发展成为中共党员（2023）。',
+    website: { label: '学校官网', url: 'https://www.njit.edu.cn/' },
     icons: ['school', 'workspace_premium']
   },
   {
@@ -25,6 +26,7 @@ const stages = [
     period: '2023.07-2025.10',
     image: IMAGE_ASSETS.experience.stage2,
     description: '利比建设咨询(上海)有限公司南京分公司就职，核心职责：负责全生命周期造价管理，涵盖标前标后全流程工作。标前：资格预审、图纸审核及算量、编制清单、招标文件与标底编制、开标评标、回标分析、议标；标后：合同管理、中期付款、变更审核、竣工结算、施工重计量等。协同各方配合业主进行造价预算，成本控制、数据分析汇报及资料整合归档。项目经历：主导并参与过土方、景观、幕墙、门窗、地坪、人防标识、装饰装修等专业工程（百万-千万元级），两年半内参与招标及审核的项目数量累计40+；运用广联达软件完成两次总造价5000万元以上的大型总包重计量工作（南京中华门G98别墅项目IL地块/FG地块重计量）。在施工重计量中，面对GTJ模型提量所产生的大量清单数据，运用excel函数（如IF ELSE、SUBTOTAL、VLOOKUP等）内嵌搭建清单筛选汇总模型，与原清单整合优化数据处理，显著提升团办公效率。技能总结：OFFICE办公软件、中望CAD、广联达  GTJ、SketchUp、易择网、招商ERP系统等。',
+    website: { label: '公司官网', url: 'https://www.rlb.com/asia/' },
     icons: ['table_chart', 'analytics']
   },
   {
@@ -165,9 +167,24 @@ export const Experience = () => {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <p className="opacity-70 text-sm leading-relaxed mb-8">
+                  <p className="opacity-70 text-sm leading-relaxed mb-6">
                     {stage.description}
                   </p>
+                  {(stage as any).website && (
+                    <div className="mb-8">
+                      <a 
+                        href={(stage as any).website.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-xs font-label"
+                      >
+                        <span className="material-symbols-outlined text-base">language</span>
+                        <span className="border-b border-primary/30 hover:border-primary transition-all">
+                          {(stage as any).website.label}：{(stage as any).website.url}
+                        </span>
+                      </a>
+                    </div>
+                  )}
                   <div className="flex gap-4 mt-auto">
                     {stage.icons.map(icon => (
                       <span key={icon} className="material-symbols-outlined text-primary glimmer-effect">{icon}</span>
