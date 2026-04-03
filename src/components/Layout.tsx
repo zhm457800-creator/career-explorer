@@ -58,11 +58,12 @@ export const CustomCursor = () => {
 };
 
 // Copyable Field Component
-const CopyableField = ({ label, value, icon: Icon, href }: { label: string; value: string; icon: any; href?: string }) => {
+const CopyableField = ({ label, value, icon: Icon, href, isLocked }: { label: string; value: string; icon: any; href?: string; isLocked?: boolean }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (isLocked) return;
     navigator.clipboard.writeText(value);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -76,8 +77,11 @@ const CopyableField = ({ label, value, icon: Icon, href }: { label: string; valu
       <div className="flex-grow min-w-0">
         <p className="text-[8px] text-on-surface/30 uppercase tracking-[0.2em] mb-0.5 font-label">{label}</p>
         <div className="flex items-center justify-between gap-4">
-          <span className="font-headline font-bold text-on-surface text-base md:text-lg tracking-tighter truncate group-hover/item:text-primary transition-colors">{value}</span>
-          <div className="flex items-center shrink-0">
+          <span className={`font-headline font-bold text-on-surface text-base md:text-lg tracking-tighter truncate transition-colors ${isLocked ? 'opacity-20 select-none' : 'group-hover/item:text-primary'}`}>
+            {isLocked ? '••••••••' : value}
+          </span>
+          {!isLocked && (
+            <div className="flex items-center shrink-0">
             <AnimatePresence mode="wait">
               {copied ? (
                 <motion.div
@@ -102,6 +106,7 @@ const CopyableField = ({ label, value, icon: Icon, href }: { label: string; valu
               )}
             </AnimatePresence>
           </div>
+          )}
         </div>
       </div>
     </div>
@@ -115,6 +120,22 @@ const CopyableField = ({ label, value, icon: Icon, href }: { label: string; valu
 
 // Contact Modal Component
 export const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const [accessCode, setAccessCode] = useState('');
+  const [isUnlocked, setIsUnlocked] = useState(false);
+
+  useEffect(() => {
+    if (accessCode === '0131') {
+      setIsUnlocked(true);
+    }
+  }, [accessCode]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setAccessCode('');
+      setIsUnlocked(false);
+    }
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -179,18 +200,41 @@ export const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                   label="EMAIL" 
                   value="hm15295780131@outlook.com" 
                   icon={Mail} 
-                  href="mailto:hm15295780131@outlook.com"
+                  href={isUnlocked ? "mailto:hm15295780131@outlook.com" : undefined}
+                  isLocked={!isUnlocked}
                 />
                 <CopyableField 
                   label="WECHAT" 
                   value="15295780131" 
                   icon={MessageSquare} 
+                  isLocked={!isUnlocked}
                 />
                 <CopyableField 
                   label="QQ" 
                   value="2458678372" 
                   icon={Hash} 
+                  isLocked={!isUnlocked}
                 />
+
+                {!isUnlocked && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="pt-6"
+                  >
+                    <div className="relative">
+                      <p className="text-[8px] text-on-surface/30 uppercase tracking-[0.3em] mb-2 font-label">输入令牌解锁信息 / ENTER ACCESS CODE</p>
+                      <input
+                        type="password"
+                        maxLength={4}
+                        placeholder="••••"
+                        value={accessCode}
+                        onChange={(e) => setAccessCode(e.target.value)}
+                        className="w-full bg-on-surface/5 border border-on-surface/10 px-4 py-3 font-headline font-bold text-center tracking-[1em] text-primary focus:outline-none focus:border-primary/50 transition-all placeholder:opacity-20"
+                      />
+                    </div>
+                  </motion.div>
+                )}
                 
                 <motion.div 
                   initial={{ opacity: 0 }}
@@ -198,9 +242,11 @@ export const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                   transition={{ delay: 0.6 }}
                   className="pt-10 flex items-center gap-4"
                 >
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/5 border border-green-500/10">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[10px] font-bold text-green-500/80 uppercase tracking-tighter">AVAILABLE FOR WORK</span>
+                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-500 ${isUnlocked ? 'bg-green-500/10 border-green-500/30' : 'bg-on-surface/5 border border-on-surface/5'}`}>
+                    <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${isUnlocked ? 'bg-green-500' : 'bg-on-surface/20'}`} />
+                    <span className={`text-[10px] font-bold uppercase tracking-tighter ${isUnlocked ? 'text-green-500/80' : 'text-on-surface/30'}`}>
+                      {isUnlocked ? 'VERIFIED & AVAILABLE' : 'LOCKED'}
+                    </span>
                   </div>
                 </motion.div>
               </motion.div>
