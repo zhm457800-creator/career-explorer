@@ -46,7 +46,7 @@ const stages = [
     year: 'PRESENT',
     period: 'present',
     image: IMAGE_ASSETS.experience.stage4,
-    description: '这段时间我一直在钻研AI领域，先后上手了 Gemini、ChatGPT、Kimi、Claude Code、Cursor 等多种工具，并尝试将它们应用到实际开发中。通过这段时间的积累，我利用 Stitch、Google AI Studio、VScode和 Trae等环境，从0到1成功搭建起了个人网站，并独立开发部署了一款英语学习 App。目前这个 App 已经实现了用户注册登录、智能语音、音频解析以及多模态对话功能，特别是其中的音色克隆与实时语音交流，让交互体验有了质的提升。在完成单词系统学习功能的闭环后，我现在正集中精力研究 Agent 智能体的构建，希望能够实现更复杂、更自动化的任务处理。',
+    description: '这段时间我一直在钻研AI领域，先后上手了 Gemini、ChatGPT、Kimi、Claude Code、Cursor、VScode、antigravity、Obsidian等多种工具，并尝试将它们应用到实际开发中。通过这段时间的积累，我利用 Stitch、Google AI Studio、antigravity、VScode和 Trae等，从0到1成功搭建起了个人网站，并利用Dify软件，通过编写 Python 意图识别模块、整合个人知识库与Qwen大模型进行RAG深度检索，成功搭建了个人网站AI小助手。现在正在研究独立开发一款音色克隆英语学习 App，目前这个 App 已经实现了UI交互、单词学习、文本对话、目前正集中于语音生成模块的优化与调试，希望能够实现更个性化的语言学习体验。',
     icons: ['psychology', 'rocket_launch']
   }
 ];

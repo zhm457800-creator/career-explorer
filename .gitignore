@@ -21,3 +21,7 @@ Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
+
+# Scratch files
+target.txt
+updateCode.cjs

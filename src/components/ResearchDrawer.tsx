@@ -33,20 +33,20 @@ const codeSnippets = [
 
 const researchNodes = [
   {
-    label: ">> ACCESSING_AI_QS_INTEGRATION_01",
+    label: ">> NEURAL_MAPPING_V2_01",
+    title: "音色克隆英语学习软件“ECHO_LINGO”",
+    desc: "致力于通过音色克隆技术打造极致个性化（Personalized）的语言学习体验。正在开发一款APP，技术端已打通系统框架、交互 UI 及基础文本对话链路，目前正集中于语音生成模块的优化与功能联调。",
+    load: "84.2%",
+    sync: "89.2% Optm",
+    progress: 12,
+  },
+  {
+    label: ">> ACCESSING_AI_QS_INTEGRATION_02",
     title: "构建公众号 AI 自动化写作 Workflow",
     desc: "为解决公众号创作慢、AI 风格调教难的痛点，我正通过标准化模块搭建专属工作流。目标是将 AI 从单纯的「聊天工具」转化为能精准复刻个人风格的「高效生产线」。",
     load: "68.4%",
     sync: "99.9% Core",
     progress: 10,
-  },
-  {
-    label: ">> NEURAL_MAPPING_V2_02",
-    title: "打造个人网站专属 AI 助手",
-    desc: "正在搭建个人网站的专属 AI 客服。利用预设知识库实现 24 小时自动回帖，搞定简单问题，帮助大家进一步了解我，也让我腾出精力去做更有价值的研究。",
-    load: "22.1%",
-    sync: "89.2% Optm",
-    progress: 7,
   },
   {
     label: ">> QUANTUM_LOGIC_SYNC_03",

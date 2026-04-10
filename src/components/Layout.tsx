@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Sun, Moon, Mail, MessageSquare, Copy, Check, Hash } from 'lucide-react';
 import { gsap } from 'gsap';
+import { Assistant } from './Assistant';
 
 // Custom Cursor Component
 export const CustomCursor = () => {
@@ -139,136 +140,128 @@ export const ContactModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: ()
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
+        <div className="fixed inset-0 z-[500] flex items-center justify-center p-4 sm:p-6">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+            className="absolute inset-0 bg-black/80 backdrop-blur-md"
           />
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="relative w-full max-w-[500px] bg-surface/40 border border-outline-variant/30 backdrop-blur-2xl p-8 md:p-10 overflow-hidden"
-          >
-            {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/2" />
 
-            <button
-              onClick={onClose}
-              className="absolute top-6 right-6 text-on-surface/50 hover:text-primary transition-colors z-10"
-            >
-              <X size={24} />
-            </button>
-            <div className="space-y-2 relative z-10 text-center md:text-left">
-              <motion.span 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 }}
-                className="inline-block px-2.5 py-0.5 bg-primary/10 text-[8px] font-black text-primary uppercase tracking-[0.3em] rounded-sm"
-              >
-                GET_IN_TOUCH
-              </motion.span>
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="font-headline font-black text-3xl md:text-5xl tracking-[ -0.05em] text-on-surface leading-none"
-              >
-                OPEN_<span className="italic text-primary/80">CHANNELS</span>
-              </motion.h2>
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="relative w-full max-w-[840px] bg-[#0A0A0C]/50 backdrop-blur-3xl border border-white/20 shadow-[0_50px_100px_rgba(0,0,0,0.95),inset_0_2px_2px_rgba(255,255,255,0.1),inset_0_0_0_1px_rgba(255,255,255,0.05)] rounded-[2rem] overflow-hidden flex flex-col md:flex-row ring-1 ring-black/50"
+          >
+            {/* Left/Top Section: Branding */}
+            <div className="w-full md:w-1/3 bg-black/30 border-b md:border-b-0 md:border-r border-white/10 p-10 md:p-12 flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-48 h-48 bg-primary/20 blur-[80px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+              
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 mb-8 px-3 py-1.5 bg-white/5 rounded-full border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  <span className="text-[8px] font-black text-white/80 uppercase tracking-widest">ACCESS_NODE</span>
+                </div>
+                <h2 className="font-headline font-black text-4xl tracking-tighter text-white leading-none break-words">
+                  OPEN_<br />
+                  <span className="italic text-primary">PORT</span>
+                </h2>
+                <p className="mt-5 text-[9px] text-white/30 uppercase tracking-[0.3em] font-bold leading-relaxed">
+                  ARCHITECTURAL<br/>MONOLITH LOG
+                </p>
+              </div>
+
+              <div className="relative z-10 mt-16 md:mt-0 flex items-center gap-3">
+                <div className="relative flex items-center justify-center">
+                   {isUnlocked && <div className="absolute inset-0 bg-green-500 blur-sm rounded-full" />}
+                   <div className={`w-2 h-2 rounded-full ${isUnlocked ? 'bg-green-400' : 'bg-red-500'}`} />
+                </div>
+                <span className={`text-[9px] font-black tracking-widest uppercase ${isUnlocked ? 'text-green-500' : 'text-red-500/80'}`}>
+                  {isUnlocked ? 'LINK ESTABLISHED' : 'ENCRYPTED PORT'}
+                </span>
+              </div>
             </div>
 
-            <div className="mt-8 space-y-2 relative z-10 max-w-xl mx-auto">
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="space-y-2"
+            {/* Right/Bottom Section: Input or Data */}
+            <div className="w-full md:w-2/3 p-10 md:p-14 relative flex flex-col justify-center min-h-[400px]">
+              <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full translate-x-1/3 translate-y-1/3 pointer-events-none" />
+              
+              <button
+                onClick={onClose}
+                className="absolute top-6 right-6 text-white/30 hover:text-white transition-all duration-300 z-[50] p-2 hover:bg-white/5 rounded-full group"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-1 h-8 bg-primary/30" />
-                  <div>
-                    <p className="text-micro font-bold text-on-surface/30 uppercase tracking-[0.3em]">CHANNELS</p>
-                  </div>
-                </div>
-                
-                <CopyableField 
-                  label="EMAIL" 
-                  value="hm15295780131@outlook.com" 
-                  icon={Mail} 
-                  href={isUnlocked ? "mailto:hm15295780131@outlook.com" : undefined}
-                  isLocked={!isUnlocked}
-                />
-                <CopyableField 
-                  label="WECHAT" 
-                  value="15295780131" 
-                  icon={MessageSquare} 
-                  isLocked={!isUnlocked}
-                />
-                <CopyableField 
-                  label="QQ" 
-                  value="2458678372" 
-                  icon={Hash} 
-                  isLocked={!isUnlocked}
-                />
+                <X size={16} className="group-hover:rotate-90 transition-transform duration-300" />
+              </button>
 
-                {!isUnlocked && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="pt-6"
+              <AnimatePresence mode="wait">
+                {!isUnlocked ? (
+                  <motion.div
+                    key="locked"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full relative z-10"
                   >
+                    <div className="flex items-center gap-3 mb-8">
+                      <span className="flex h-2 w-2 relative">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                      </span>
+                      <p className="text-base text-white/95 font-black tracking-widest relative">
+                        请输入访问密码
+                        <span className="absolute -bottom-2 left-0 w-8 h-[2px] bg-primary" />
+                      </p>
+                    </div>
                     <div className="relative">
-                      <p className="text-[8px] text-on-surface/30 uppercase tracking-[0.3em] mb-2 font-label">输入令牌解锁信息 / ENTER ACCESS CODE</p>
                       <input
                         type="password"
                         maxLength={4}
                         placeholder="••••"
                         value={accessCode}
                         onChange={(e) => setAccessCode(e.target.value)}
-                        className="w-full bg-on-surface/5 border border-on-surface/10 px-4 py-3 font-headline font-bold text-center tracking-[1em] text-primary focus:outline-none focus:border-primary/50 transition-all placeholder:opacity-20"
+                        className="w-full bg-black/40 border-b-2 border-white/10 px-2 py-4 font-headline font-black text-center tracking-[1.5em] text-primary text-3xl focus:outline-none focus:border-primary transition-all placeholder:text-white/10"
                       />
                     </div>
+                    <p className="mt-8 text-[8px] text-white/20 uppercase tracking-[0.2em] font-mono leading-relaxed">
+                      ENTER 4-DIGIT ACCESS TOKEN TO REVEAL SECURE CONTACT CHANNELS.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="unlocked"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full relative z-10 space-y-1"
+                  >
+                    <p className="text-[9px] text-green-500/60 font-bold uppercase tracking-[0.3em] mb-6">
+                      CHANNELS DECRYPTED //
+                    </p>
+                    <CopyableField 
+                      label="EMAIL" 
+                      value="hm15295780131@outlook.com" 
+                      icon={Mail} 
+                      href="mailto:hm15295780131@outlook.com"
+                    />
+                    <CopyableField 
+                      label="WECHAT" 
+                      value="15295780131" 
+                      icon={MessageSquare} 
+                    />
+                    <CopyableField 
+                      label="QQ" 
+                      value="2458678372" 
+                      icon={Hash} 
+                    />
                   </motion.div>
                 )}
-                
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                  className="pt-10 flex items-center gap-4"
-                >
-                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-500 ${isUnlocked ? 'bg-green-500/10 border-green-500/30' : 'bg-on-surface/5 border border-on-surface/5'}`}>
-                    <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${isUnlocked ? 'bg-green-500' : 'bg-on-surface/20'}`} />
-                    <span className={`text-[10px] font-bold uppercase tracking-tighter ${isUnlocked ? 'text-green-500/80' : 'text-on-surface/30'}`}>
-                      {isUnlocked ? 'VERIFIED & AVAILABLE' : 'LOCKED'}
-                    </span>
-                  </div>
-                </motion.div>
-              </motion.div>
+              </AnimatePresence>
             </div>
-            
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-12 pt-6 border-t border-on-surface/5 flex justify-between items-center relative z-10"
-            >
-              <p className="text-[8px] text-on-surface/30 uppercase tracking-[0.2em] font-light">
-                ©2026 ARCHITECTURAL MONOLITH
-              </p>
-              <div className="flex gap-4">
-                {['LINKEDIN', 'GITHUB'].map(social => (
-                  <a key={social} href="#" className="text-[8px] font-bold text-on-surface/40 hover:text-primary transition-colors tracking-widest uppercase">
-                    {social}
-                  </a>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       )}
@@ -339,6 +332,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <div id="theme-transition-overlay" ref={overlayRef}></div>
       <CustomCursor />
       <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      <Assistant />
       
       {!isArchivePage && (
         <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl border border-outline-variant/20 bg-surface/60 backdrop-blur-md flex justify-between items-center px-8 py-4 z-[100] shadow-2xl">

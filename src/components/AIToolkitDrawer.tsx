@@ -10,33 +10,20 @@ interface AIToolkitDrawerProps {
 }
 
 const tabData = {
-  alpha: {
-    id: '01',
-    title: 'ECHO_LINGO',
-    icon: Database,
-    protocol: 'ECHO_LINGO / 语音克隆英语学习软件',
-    capacity: 84,
-    outcomes: [
-      '全栈部署： 独立完成用户体系、数据库及云端全链路搭建。',
-      '双模交互： 集成大模型接口，实现流式语音与文本即时对话。',
-      '音色克隆： 接入神经网络算法，实现 1:1 还原的交互口语练习。',
-      '后端驱动： 自动化解析、处理并调用大规模音频数据。'
-    ],
-  },
   neural: {
-    id: '02',
+    id: '01',
     title: 'NEURAL_CORE',
     icon: Cpu,
-    protocol: '敬请期待',
+    protocol: 'Dify搭建个人网站AI助手',
     capacity: 92,
     outcomes: [
-      'Pattern Recognition at 99.8%',
-      'Memory Allocation Optimized',
-      'Synaptic Pruning Active'
+      '架构搭建：基于 Dify + RAG 整合个人知识库与大模型',
+      '逻辑优化：编写 Python 意图识别模块，实现问答精准分流',
+      '部署落地：接入个人网站，提供 7x24h自动化服务'
     ],
   },
   grid: {
-    id: '03',
+    id: '02',
     title: 'GRID_SYSTEM',
     icon: LayoutGrid,
     protocol: '敬请期待',
@@ -49,7 +36,7 @@ const tabData = {
     action: 'RECALIBRATE_GRID'
   },
   void: {
-    id: '04',
+    id: '03',
     title: 'VOID_ENGINE',
     icon: Zap,
     protocol: '敬请期待',
@@ -63,9 +50,9 @@ const tabData = {
 };
 
 export const AIToolkitDrawer = ({ onClose }: AIToolkitDrawerProps) => {
-  const [activeTab, setActiveTab] = useState<keyof typeof tabData>('alpha');
+  const [activeTab, setActiveTab] = useState<keyof typeof tabData>('neural');
   const [isCardVisible, setIsCardVisible] = useState(true);
-  const [loadCapacity, setLoadCapacity] = useState(tabData.alpha.capacity);
+  const [loadCapacity, setLoadCapacity] = useState(tabData.neural.capacity);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -211,7 +198,7 @@ export const AIToolkitDrawer = ({ onClose }: AIToolkitDrawerProps) => {
                     {tabData[activeTab].outcomes.map((outcome, idx) => (
                       <li key={idx} className="flex items-center gap-3 group cursor-crosshair">
                         <span className="w-1.5 h-1.5 bg-primary flex-shrink-0"></span>
-                        <span className="text-white/60 text-[11px] font-medium tracking-wide uppercase group-hover:text-white transition-colors">{outcome}</span>
+                        <span className="text-white/60 text-[13px] font-medium tracking-wide uppercase group-hover:text-white transition-colors">{outcome}</span>
                       </li>
                     ))}
                   </ul>
