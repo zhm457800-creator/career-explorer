@@ -24,6 +24,8 @@ export const Assistant = () => {
   const [typedText, setTypedText] = useState('');
   const [usage, setUsage] = useState({ count: 0, date: new Date().toLocaleDateString() });
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const autoCloseTimerRef = useRef<NodeJS.Timeout | null>(null);
+
 
   const DAILY_LIMIT = 20;
 
@@ -126,15 +128,50 @@ export const Assistant = () => {
   }, [messages, isLoading, thinkingIndex]);
 
   useEffect(() => {
-    // Keep button expanded for 3 seconds
+    // 按钮保持展开 3 秒
     const expandTimer = setTimeout(() => setIsExpanded(false), 3000);
-    // Show greeting bubble for 8 seconds
-    const greetingTimer = setTimeout(() => setShowGreeting(false), 8000);
-    return () => {
-      clearTimeout(expandTimer);
-      clearTimeout(greetingTimer);
-    };
+
+    // 自动唤醒逻辑
+    const hasPrompted = sessionStorage.getItem('assistant_auto_prompted');
+    if (!hasPrompted) {
+      // 首次进入会话，延迟一小会儿后唤醒
+      const wakeTimer = setTimeout(() => {
+        setIsOpen(true);
+        setShowGreeting(false);
+        
+        // 只有在真正触发唤醒后才记录到会话中
+        // 这样可以避免开发环境下 React Strict Mode 导致的计时器清理问题
+        sessionStorage.setItem('assistant_auto_prompted', 'true');
+        
+        // 5秒后如果没交互则自动收起
+        autoCloseTimerRef.current = setTimeout(() => {
+          setIsOpen(false);
+        }, 5000);
+      }, 1000);
+
+      return () => {
+        clearTimeout(expandTimer);
+        clearTimeout(wakeTimer);
+        if (autoCloseTimerRef.current) clearTimeout(autoCloseTimerRef.current);
+      };
+    } else {
+
+      // 非首次进入，照常显示气泡提示
+      const greetingTimer = setTimeout(() => setShowGreeting(false), 8000);
+      return () => {
+        clearTimeout(expandTimer);
+        clearTimeout(greetingTimer);
+      };
+    }
   }, []);
+
+  const handleInteraction = () => {
+    if (autoCloseTimerRef.current) {
+      clearTimeout(autoCloseTimerRef.current);
+      autoCloseTimerRef.current = null;
+    }
+  };
+
 
   const handleSendMessage = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -388,6 +425,9 @@ export const Assistant = () => {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="fixed bottom-8 right-8 z-[200] flex flex-col backdrop-blur-2xl border shadow-2xl overflow-hidden"
+            onMouseDown={handleInteraction}
+            onKeyDown={handleInteraction}
+
             style={{ 
               backgroundColor: 'var(--nav-bg)', 
               borderColor: 'var(--nav-border)',
