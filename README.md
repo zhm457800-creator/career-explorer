@@ -230,30 +230,30 @@ AI 工具导航模块，包含：
 
 ### 首页（Home）
 
-![[screenshots/f81f27cc-43cd-4553-8c5b-3b5aeccc3cce.png]]
+![首页主视觉，展示「天堂树」的隐喻](screenshots/f81f27cc-43cd-4553-8c5b-3b5aeccc3cce.png)
 首页主视觉，展示「天堂树」的隐喻
 
 ### 关于页（About）
 
-![[screenshots/Pasted image 20260415143216.png]]
+![顶部轮播，展示身份特质](screenshots/Pasted image 20260415143216.png)
 顶部轮播，展示身份特质
 
 ### 经历页（Experience）
 
-![[screenshots/588ef528-6121-4b00-ba29-57d6ef2ae777.png]]
+![个人经历](screenshots/588ef528-6121-4b00-ba29-57d6ef2ae777.png)
 个人经历
 
 ### 扩展页（Extension）
 
-![[screenshots/511c9f6d-9e36-4823-b347-b2d71a93f8ae.png]]
+![四个抽屉模块入口](screenshots/511c9f6d-9e36-4823-b347-b2d71a93f8ae.png)
 四个抽屉模块入口
 
 ### 扩展页（更多）
 
-![[screenshots/Pasted image 20260415143401.png]]
+![AI 工具抽屉](screenshots/Pasted image 20260415143401.png)
 AI 工具抽屉
 
-![[screenshots/Pasted image 20260415143432.png]]
+![塔罗牌抽屉](screenshots/Pasted image 20260415143432.png)
 塔罗牌抽屉
 
 ---
