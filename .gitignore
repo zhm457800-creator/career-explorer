@@ -25,3 +25,6 @@ Thumbs.db
 # Scratch files
 target.txt
 updateCode.cjs
+
+# Requirements documentation
+REQUIREMENTS.md
