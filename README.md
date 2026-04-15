@@ -235,7 +235,7 @@ AI 工具导航模块，包含：
 
 ### 关于页（About）
 
-![顶部轮播，展示身份特质](screenshots/Pasted image 20260415143216.png)
+![顶部轮播，展示身份特质](screenshots/about_carousel.png)
 顶部轮播，展示身份特质
 
 ### 经历页（Experience）
@@ -250,10 +250,10 @@ AI 工具导航模块，包含：
 
 ### 扩展页（更多）
 
-![AI 工具抽屉](screenshots/Pasted image 20260415143401.png)
+![AI 工具抽屉](screenshots/ai_toolkits.png)
 AI 工具抽屉
 
-![塔罗牌抽屉](screenshots/Pasted image 20260415143432.png)
+![塔罗牌抽屉](screenshots/tarot_drawer.png)
 塔罗牌抽屉
 
 ---
